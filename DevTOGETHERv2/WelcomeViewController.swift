@@ -48,7 +48,8 @@ class WelcomeViewController: UIViewController {
                     ProgressHUD.showError(error!.localizedDescription)
                 } else if isEmailVerified {
                     
-                    //enter the application yay!
+                    print("Go to app")
+                    
                 } else {
                     ProgressHUD.showError("Please verify your email!")
                     
