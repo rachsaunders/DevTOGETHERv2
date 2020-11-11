@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>75211486908-s679nkij7dum76huc3snf1605oatit2t.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.75211486908-s679nkij7dum76huc3snf1605oatit2t</string>
+	<key>API_KEY</key>
+	<string>AIzaSyB1uigkxPDBjyhp7hQgREZi4UNxnUX8ENo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>75211486908</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.rachelsaunders.DevTOGETHERv2</string>
+	<key>PROJECT_ID</key>
+	<string>devtogetherv2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>devtogetherv2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:75211486908:ios:17af6022a2596d8a29c2b9</string>
+	<key>DATABASE_URL</key>
+	<string>https://devtogetherv2.firebaseio.com</string>
+</dict>
+</plist>
