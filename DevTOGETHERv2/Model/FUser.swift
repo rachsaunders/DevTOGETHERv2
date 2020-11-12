@@ -18,7 +18,7 @@ class FUser: Equatable {
     let objectId: String
     var email: String
     var username: String
-    var dateofBirth: Date
+    var dateOfBirth: Date
     var devYears: String
     var isMale: Bool
     var avatar: UIImage?
@@ -46,7 +46,7 @@ class FUser: Equatable {
             self.objectId,
             self.email,
             self.username,
-            self.dateofBirth,
+            self.dateOfBirth,
             self.devYears,
             self.isMale,
             self.profession,
@@ -105,7 +105,7 @@ class FUser: Equatable {
         objectId = _objectId
         email = _email
         username = _username
-        dateofBirth = _dateOfBirth
+        dateOfBirth = _dateOfBirth
         isMale = _isMale
         devYears = _devYears
         profession = ""
@@ -123,6 +123,35 @@ class FUser: Equatable {
         
     }
     
+    init(_dictionary: NSDictionary) {
+        
+        objectId = _dictionary[kOBJECTID] as? String ?? ""
+        email = _dictionary[kEMAIL]  as? String ?? ""
+        username = _dictionary[kUSERNAME]  as? String ?? ""
+        isMale = _dictionary[kISMALE] as? Bool ?? true
+        devYears = _dictionary[kDEVYEARS]  as? String ?? ""
+        profession = _dictionary[kPROFESSION]  as? String ?? ""
+        jobTitle = _dictionary[kJOBTITLE] as? String ?? ""
+        about = _dictionary[kABOUT] as? String ?? ""
+        skills = _dictionary[kSKILLS] as? String ?? ""
+        skillsLookingFor = _dictionary[kSKILLSLOOKINGFOR] as? String ?? ""
+        city = _dictionary[kCITY] as? String ?? ""
+        country = _dictionary[kCOUNTRY] as? String ?? ""
+        lookingFor = _dictionary[kLOOKINGFOR] as? String ?? ""
+        avatarLink = _dictionary[kAVATARLINK] as? String ?? ""
+        likedIdArray = _dictionary[kLIKEDIDARRAY] as? [String]
+        imageLinks = _dictionary[kIMAGELINKS] as? [String]
+        pushId = _dictionary[kPUSHID] as? String ?? ""
+        
+        if let date = _dictionary[kDATEOFBIRTH] as? Timestamp {
+            dateOfBirth = date.dateValue()
+        } else {
+            dateOfBirth = _dictionary[kDATEOFBIRTH] as? Date ?? Date()
+        }
+        
+        
+    }
+    
     //MARK:- LOGIN
     
     class func loginUserWith(email: String, password: String, completion: @escaping (_ error: Error?, _ isEmailVerified: Bool) -> Void) {
@@ -132,7 +161,8 @@ class FUser: Equatable {
             if error == nil {
                 if authDataResult!.user.isEmailVerified {
                     
-                    // check if user exists already in firebase
+                    FirebaseListener.shared.downloadCurrentUserFromFirebase(userId: authDataResult!.user.uid, email: email)
+                    
                     completion(error, true)
                 } else {
                     print("email isn't verified!")
@@ -144,6 +174,7 @@ class FUser: Equatable {
             }
             
         }
+        
         
     }
     
@@ -175,6 +206,24 @@ class FUser: Equatable {
         }
     }
     
+    //MARK:- RESEND LINKS
+    
+    class func resetPasswordFor(email: String, completion: @escaping (_ error: Error?) -> Void) {
+        
+        Auth.auth().currentUser?.reload(completion: { (error) in
+            
+            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                
+                completion(error)
+                
+            })
+            
+        })
+        
+    }
+    
+    //MARK: - SAVE USER FUNCS
+    
     func saveUserLocally() {
         
         userDefaults.setValue(self.userDictionary as! [String : Any], forKey: kCURRENTUSER)
@@ -183,5 +232,17 @@ class FUser: Equatable {
         
     }
     
+    
+    func saveUserToFireStore() {
+        
+        
+        FirebaseReference(.User).document(self.objectId).setData(self.userDictionary as! [String : Any]) { (error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+        }
+        
+    }
     
 }
