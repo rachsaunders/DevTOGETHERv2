@@ -63,8 +63,7 @@ class FUser: Equatable {
             self.imageLinks ?? [],
             self.registeredDate,
             self.pushId ?? ""
-            
-            
+       
             
         ],
         
@@ -87,8 +86,6 @@ class FUser: Equatable {
                   kIMAGELINKS as NSCopying,
                   kREGISTEREDDATE as NSCopying,
                   kPUSHID as NSCopying
-                  
-                  
                   
                   
                   
