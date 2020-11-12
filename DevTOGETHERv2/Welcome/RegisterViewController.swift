@@ -32,13 +32,14 @@ class RegisterViewController: UIViewController {
     
     @IBOutlet weak var genderSegmentOutlet: UISegmentedControl!
     
-    @IBOutlet weak var dateOfBirthTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     
     //MARK:- VARIABLES
     
     var isMale = true
+ 
     
     //MARK:- VIEW LIFE CYCLE
     
@@ -47,6 +48,7 @@ class RegisterViewController: UIViewController {
 
         overrideUserInterfaceStyle = .dark
         setupBackgroundTouch()
+    
         
         
     }
@@ -82,7 +84,7 @@ class RegisterViewController: UIViewController {
     
 
     //MARK:- SETUP
-    private func setupBackgroundTouch(){
+        private func setupBackgroundTouch(){
         
         backgroundImageView.isUserInteractionEnabled = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(backgroundTap))
@@ -94,13 +96,19 @@ class RegisterViewController: UIViewController {
     }
 
     //MARK:- HELPERS
-    private func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         self.view.endEditing(false)
         
     }
     
+    
+    @objc func doneClicked() {
+        
+        
+    }
+    
     private func isTextDataImputed() -> Bool {
-        return usernameTextField.text != "" && emailTextField.text != "" && cityTextField.text != "" && passwordTextField.text != "" && confirmPasswordTextField.text != "" && yearDevTextField.text != "" && dateOfBirthTextField.text != ""
+        return usernameTextField.text != "" && emailTextField.text != "" && cityTextField.text != "" && passwordTextField.text != "" && confirmPasswordTextField.text != "" && yearDevTextField.text != ""
         
         
     }
@@ -108,10 +116,10 @@ class RegisterViewController: UIViewController {
     //MARK: - RegisterUser
     
     private func registerUser() {
-        
+     
         ProgressHUD.show()
         
-        FUser.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!, userName: usernameTextField.text!, city: cityTextField.text!, devYears: yearDevTextField.text!, isMale: isMale, dateOfBirth: Date(), completion:  {
+        FUser.registerUserWith(email: emailTextField.text!, password: passwordTextField.text!, userName: usernameTextField.text!, city: cityTextField.text!, devYears: yearDevTextField.text!, isMale: isMale, dateOfBirth: datePicker.date, completion:  {
             error in
                                 
             if error == nil {

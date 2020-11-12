@@ -54,13 +54,15 @@ class WelcomeViewController: UIViewController {
     @IBAction func loginButtonPressed(_ sender: Any) {
         if emailTextField.text != "" && passwordTextField.text != "" {
             
+            ProgressHUD.show()
+            
             FUser.loginUserWith(email: emailTextField.text!, password: passwordTextField.text!) { (error, isEmailVerified) in
                 
                 if error != nil {
                     ProgressHUD.showError(error!.localizedDescription)
                 } else if isEmailVerified {
-                    
-                    print("Go to app")
+                    ProgressHUD.dismiss()
+                    self.goToApp()
                     
                 } else {
                     ProgressHUD.showError("Please verify your email!")
@@ -90,5 +92,17 @@ class WelcomeViewController: UIViewController {
     //MARK:- HELPERS
     private func dismissKeyboard() {
         self.view.endEditing(false)
+    }
+    
+    
+    //MARK:- NAVIGATION
+    
+    private func goToApp() {
+        let mainView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "MainView") as! UITabBarController
+        
+        mainView.modalPresentationStyle = .fullScreen
+        self.present(mainView, animated: true, completion: nil)
+        
+        
     }
 }

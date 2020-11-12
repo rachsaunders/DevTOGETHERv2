@@ -21,6 +21,7 @@
 		1896AA802555AEE900C9D217 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896AA7F2555AEE900C9D217 /* RegisterViewController.swift */; };
 		189DAAFF255C756C008C6E31 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DAAFE255C756C008C6E31 /* FCollectionReference.swift */; };
 		189DAB04255C76FD008C6E31 /* FirebaseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189DAB03255C76FD008C6E31 /* FirebaseListener.swift */; };
+		18F36312255D3B4A006F1474 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F36311255D3B4A006F1474 /* Extensions.swift */; };
 		1D7079C47D96A2902AA2FC98 /* Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DC5FDD05DE3C58B541E9DB3 /* Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework */; };
 		D8F8AB0FFAC1B5AE7E29C0A0 /* Pods_DevTOGETHERv2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71E356501EF0FE02CC6EA03E /* Pods_DevTOGETHERv2Tests.framework */; };
 		E2B9DFC567AEDAC0B8CE28DF /* Pods_DevTOGETHERv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9680DC3FC1CE1EA929A5ED /* Pods_DevTOGETHERv2.framework */; };
@@ -66,6 +67,7 @@
 		1896AA7F2555AEE900C9D217 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		189DAAFE255C756C008C6E31 /* FCollectionReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
 		189DAB03255C76FD008C6E31 /* FirebaseListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseListener.swift; sourceTree = "<group>"; };
+		18F36311255D3B4A006F1474 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4ACFC7E3ED84C7B3F6F0067E /* Pods-DevTOGETHERv2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTOGETHERv2.debug.xcconfig"; path = "Target Support Files/Pods-DevTOGETHERv2/Pods-DevTOGETHERv2.debug.xcconfig"; sourceTree = "<group>"; };
 		52A04BAC07D1B275D7A8092A /* Pods-DevTOGETHERv2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTOGETHERv2Tests.release.xcconfig"; path = "Target Support Files/Pods-DevTOGETHERv2Tests/Pods-DevTOGETHERv2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		6463A4F9E922CDB9069225A1 /* Pods-DevTOGETHERv2-DevTOGETHERv2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTOGETHERv2-DevTOGETHERv2UITests.release.xcconfig"; path = "Target Support Files/Pods-DevTOGETHERv2-DevTOGETHERv2UITests/Pods-DevTOGETHERv2-DevTOGETHERv2UITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				187AE41925570CCA00A90E4E /* Constants.swift */,
 				189DAAFE255C756C008C6E31 /* FCollectionReference.swift */,
 				189DAB03255C76FD008C6E31 /* FirebaseListener.swift */,
+				18F36311255D3B4A006F1474 /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				189DAB04255C76FD008C6E31 /* FirebaseListener.swift in Sources */,
+				18F36312255D3B4A006F1474 /* Extensions.swift in Sources */,
 				1831C29125566867002AEAEA /* FUser.swift in Sources */,
 				1896AA7B2555AEDE00C9D217 /* WelcomeViewController.swift in Sources */,
 				1896A9A625559B5C00C9D217 /* AppDelegate.swift in Sources */,
