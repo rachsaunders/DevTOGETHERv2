@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1831C29125566867002AEAEA /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831C29025566867002AEAEA /* FUser.swift */; };
+		18363E922564285000CB29CE /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18363E912564285000CB29CE /* FileStorage.swift */; };
 		187AE41A25570CCA00A90E4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187AE41925570CCA00A90E4E /* Constants.swift */; };
 		1896A9A625559B5C00C9D217 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A9A525559B5C00C9D217 /* AppDelegate.swift */; };
 		1896A9A825559B5C00C9D217 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A9A725559B5C00C9D217 /* SceneDelegate.swift */; };
@@ -49,6 +50,7 @@
 		0B503E4BC29820F039492A27 /* Pods-DevTOGETHERv2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTOGETHERv2.release.xcconfig"; path = "Target Support Files/Pods-DevTOGETHERv2/Pods-DevTOGETHERv2.release.xcconfig"; sourceTree = "<group>"; };
 		0DC5FDD05DE3C58B541E9DB3 /* Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831C29025566867002AEAEA /* FUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
+		18363E912564285000CB29CE /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		187AE41925570CCA00A90E4E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1896A9A225559B5C00C9D217 /* DevTOGETHERv2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTOGETHERv2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1896A9A525559B5C00C9D217 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				1896A9A525559B5C00C9D217 /* AppDelegate.swift */,
 				1896A9A725559B5C00C9D217 /* SceneDelegate.swift */,
 				18D765F2255DC43C0038E1B3 /* ProfileTableViewController.swift */,
+				18363E912564285000CB29CE /* FileStorage.swift */,
 				189DAAFA255C7515008C6E31 /* Welcome */,
 				189DAAF8255C74FE008C6E31 /* Model */,
 				189DAAF9255C7507008C6E31 /* Helpers */,
@@ -456,6 +459,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				189DAB04255C76FD008C6E31 /* FirebaseListener.swift in Sources */,
+				18363E922564285000CB29CE /* FileStorage.swift in Sources */,
 				18F36312255D3B4A006F1474 /* Extensions.swift in Sources */,
 				1831C29125566867002AEAEA /* FUser.swift in Sources */,
 				1896AA7B2555AEDE00C9D217 /* WelcomeViewController.swift in Sources */,

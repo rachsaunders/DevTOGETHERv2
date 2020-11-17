@@ -9,6 +9,7 @@ import Foundation
 
 
 public var userDefaults = UserDefaults.standard
+public let kFILEREFERENCE = "gs://devtogetherv2.appspot.com"
 
 // FUser
 
