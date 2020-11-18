@@ -176,8 +176,18 @@ class ProfileTableViewController: UITableViewController {
     //MARK:- LOAD USER DATA
     
     private func loadUserData() {
-        let currentUser = FUser.currentUser()!
         
+  
+        
+        let currentUser = FUser.currentUser()!
+
+        // DELETE LINE BELOW IF NOT NEEDED
+        
+        FileStorage.downloadImage(imageUrl: currentUser.avatarLink) { (image) in
+
+        }
+        
+     
         nameAgeLabel.text = currentUser.username
         cityCountryLabel.text = currentUser.country + "," + currentUser.city
         aboutMeTextView.text = currentUser.about != "" ? currentUser.about : "A little bit about me..."
@@ -193,9 +203,7 @@ class ProfileTableViewController: UITableViewController {
         lookingForTextField.text = currentUser.lookingFor
         avatarImageView.image = UIImage(named: "avatar")
         
-        // to do
-        // set avatar picture
-        
+        avatarImageView.image = currentUser.avatar
 
         
         
@@ -242,10 +250,12 @@ class ProfileTableViewController: UITableViewController {
         
         FileStorage.uploadImage(image, directory: fileDirectory) { (avatarLink) in
             
+            
             ProgressHUD.dismiss()
         
-            // save file locally
-        completion(avatarLink)
+            FileStorage.saveImageLocally(imageData: image.jpegData(compressionQuality: 0.8)! as NSData, fileName: FUser.currentId())
+        
+            completion(avatarLink)
         }
         
         
@@ -256,8 +266,15 @@ class ProfileTableViewController: UITableViewController {
         
         ProgressHUD.show()
         
-        // upoad images 
-        
+        FileStorage.uploadImages(images) { (imageLinks) in
+            
+            let currentUser = FUser.currentUser()!
+            
+            currentUser.imageLinks = imageLinks
+            
+            self.saveUserData(user: currentUser)
+            
+        }
     }
     
     

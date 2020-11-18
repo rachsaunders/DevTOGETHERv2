@@ -147,6 +147,9 @@ class FUser: Equatable {
             dateOfBirth = _dictionary[kDATEOFBIRTH] as? Date ?? Date()
         }
         
+        let placeHolder = isMale ? "mPlaceholder" : "fPlaceholder"
+        
+        avatar = UIImage (contentsOfFile: fileInDocumentsDirectory(filename: self.objectId)) ?? UIImage(named: placeHolder)
         
     }
     
@@ -168,6 +171,20 @@ class FUser: Equatable {
         
         return nil
         
+    }
+    
+    
+    
+    func getUserAvatarFromFirestore(completion: @escaping (_ didSet: Bool) -> Void) {
+        
+        FileStorage.downloadImage(imageUrl: self.avatarLink) { (avatarImage) in
+            
+            let placeholder = self.isMale ? "mPlaceholder" : "fPlaceholder"
+            self.avatar = avatarImage ?? UIImage(named: placeholder)
+            completion(true)
+            
+            
+        }
     }
     
     

@@ -25,7 +25,12 @@ class FirebaseListener {
             if snapshot.exists {
                 
                 // see note 20
-                FUser(_dictionary: snapshot.data() as! NSDictionary).saveUserLocally()
+                let user = FUser(_dictionary: snapshot.data() as! NSDictionary)
+                user.saveUserLocally()
+                
+                user.getUserAvatarFromFirestore { (didSet) in
+                    
+                }
                 
             } else {
                 
