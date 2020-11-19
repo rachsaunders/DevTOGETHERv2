@@ -22,13 +22,18 @@ class CardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let user = FUser.currentUser()!
         
-        let cardModel = UserCardModel(id: user.objectId, name: user.username, occupation: user.profession, image: user.avatar)
-        
-        initialCardModels.append(cardModel)
-        layoutCardStackView()
+        createUsers()
+//
+//        let user = FUser.currentUser()!
+//
+//        let cardModel = UserCardModel(id: user.objectId,
+//                                      name: user.username,
+//                                      occupation: user.profession,
+//                                      image: user.avatar)
+//
+//        initialCardModels.append(cardModel)
+//        layoutCardStackView()
         
     }
     
@@ -54,6 +59,9 @@ class CardViewController: UIViewController {
 }
 
 extension CardViewController: SwipeCardStackDelegate, SwipeCardStackDataSource {
+    
+    //MARK:- DATASOURCE
+    
     func cardStack(_ cardStack: SwipeCardStack, cardForIndexAt index: Int) -> SwipeCard {
         let card = UserCard()
         card.footerHeight = 80
@@ -73,6 +81,27 @@ extension CardViewController: SwipeCardStackDelegate, SwipeCardStackDataSource {
     func numberOfCards(in cardStack: SwipeCardStack) -> Int {
         return initialCardModels.count
     }
+    
+    //MARK: - Delegates
+    
+    func didSwipeAllCards(_ cardStack: SwipeCardStack) {
+        
+        print("test yo")
+
+    }
+    
+    func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
+        
+        print("test yo")
+    }
+    
+    
+    func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
+     
+        print("test yo")
+    }
+    
+    
     
     
     

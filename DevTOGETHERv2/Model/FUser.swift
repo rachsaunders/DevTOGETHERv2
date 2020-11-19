@@ -64,7 +64,7 @@ class FUser: Equatable {
             self.imageLinks ?? [],
             self.registeredDate,
             self.pushId ?? ""
-       
+            
             
         ],
         
@@ -251,7 +251,7 @@ class FUser: Equatable {
         Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { (error) in
             
             FUser.resendVerificationEmail(email: newEmail) { (error) in
-
+                
             }
             completion(error)
         })
@@ -293,7 +293,7 @@ class FUser: Equatable {
             userDefaults.removeObject(forKey: kCURRENTUSER)
             userDefaults.synchronize()
             completion(nil)
-
+            
         } catch let error as NSError {
             completion(error)
         }
@@ -323,5 +323,41 @@ class FUser: Equatable {
         }
         
     }
+    
+}
+
+
+func createUsers() {
+    
+    let names = ["Pippin", "Eddie", "Georgie", "Emu", "Tom", "Molly"]
+    
+    var imageIndex = 1
+    var userIndex = 1
+    var isMale = true
+    
+    for i in 0..<5 {
+        
+        let id = UUID().uuidString
+        
+        let fileDirectory = "Avatars/_" + id + ".jpg"
+        
+        FileStorage.uploadImage(UIImage(named: "user\(imageIndex)")!, directory: fileDirectory) { (avatarLink) in
+            
+            
+            let user = FUser(_objectId: id, _email: "user\(userIndex)@mail.com", _username: names[i], _city: "No city", _dateOfBirth: Date(), _devYears: "0", _isMale: isMale, _avatarLink: avatarLink ?? "")
+            
+            isMale.toggle()
+            userIndex += 1
+            user.saveUserToFireStore()
+        }
+        
+        imageIndex += 1
+        
+        if imageIndex == 6 {
+            imageIndex = 1
+        }
+        
+    }
+    
     
 }
