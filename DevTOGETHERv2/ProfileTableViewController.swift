@@ -49,6 +49,8 @@ class ProfileTableViewController: UITableViewController {
     var avatarImage: UIImage?
     var gallery: GalleryController!
     
+    var alertTextField: UITextField!
+    
     
     
     
@@ -63,10 +65,10 @@ class ProfileTableViewController: UITableViewController {
         
         if FUser.currentUser() != nil {
             loadUserData()
-        updateEditingMode()
+            updateEditingMode()
         }
-       
-       
+        
+        
     }
     
     // needs editing to add skills sections
@@ -90,7 +92,7 @@ class ProfileTableViewController: UITableViewController {
         showPictureOptions()
     }
     
-  
+    
     @IBAction func editButtonPressed(_ sender: Any) {
         
         editingMode.toggle()
@@ -137,7 +139,7 @@ class ProfileTableViewController: UITableViewController {
         editingMode = false
         updateEditingMode()
         showSaveButton()
-       
+        
         
     }
     
@@ -161,7 +163,7 @@ class ProfileTableViewController: UITableViewController {
         // set background of text fields to clear colour as well
         
         aboutMeView.layer.cornerRadius = 10
-    
+        
     }
     
     private func showSaveButton() {
@@ -177,17 +179,17 @@ class ProfileTableViewController: UITableViewController {
     
     private func loadUserData() {
         
-  
+        
         
         let currentUser = FUser.currentUser()!
-
-        // DELETE LINE BELOW IF NOT NEEDED
         
-        FileStorage.downloadImage(imageUrl: currentUser.avatarLink) { (image) in
-
-        }
+        //        // DELETE LINE BELOW IF NOT NEEDED
+        //
+        //        FileStorage.downloadImage(imageUrl: currentUser.avatarLink) { (image) in
+        //
+        //        }
         
-     
+        
         nameAgeLabel.text = currentUser.username
         cityCountryLabel.text = currentUser.country + "," + currentUser.city
         aboutMeTextView.text = currentUser.about != "" ? currentUser.about : "A little bit about me..."
@@ -201,15 +203,15 @@ class ProfileTableViewController: UITableViewController {
         cityTextField.text = currentUser.city
         countryTextField.text = currentUser.country
         lookingForTextField.text = currentUser.lookingFor
-        avatarImageView.image = UIImage(named: "avatar")
+        avatarImageView.image = UIImage(named: "avatar")?.circleMasked
         
-        avatarImageView.image = currentUser.avatar
-
+        avatarImageView.image = currentUser.avatar?.circleMasked
+        
         
         
     }
     
-   //MARK:- EDITING MODE
+    //MARK:- EDITING MODE
     
     func updateEditingMode() {
         
@@ -233,7 +235,7 @@ class ProfileTableViewController: UITableViewController {
         // add skills?
         self.aboutMeTextView.becomeFirstResponder()
     }
-
+    
     private func hideKeyboard() {
         self.view.endEditing(false)
     }
@@ -252,9 +254,9 @@ class ProfileTableViewController: UITableViewController {
             
             
             ProgressHUD.dismiss()
-        
+            
             FileStorage.saveImageLocally(imageData: image.jpegData(compressionQuality: 0.8)! as NSData, fileName: FUser.currentId())
-        
+            
             completion(avatarLink)
         }
         
@@ -324,82 +326,175 @@ class ProfileTableViewController: UITableViewController {
         
         alertController.addAction(UIAlertAction(title: "Change Email", style: .default, handler: { (alert) in
             
-      //      self.showChangeField(value: "Email")
+            self.showChangeField(value: "Email")
         }))
         
         alertController.addAction(UIAlertAction(title: "Change Name", style: .default, handler: { (alert) in
             
-     //       self.showChangeField(value: "Name")
+            self.showChangeField(value: "Name")
         }))
         
         alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (alert) in
             
-        //    self.logOutUser()
+                self.logOutUser()
         }))
-
+        
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         
         self.present(alertController, animated: true, completion: nil)
     }
-
     
     
-    
-}
-
-
-extension ProfileTableViewController: GalleryControllerDelegate {
-    func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+    private func showChangeField(value: String) {
         
+        let alertView = UIAlertController(title: "Updating \(value)", message: "Please write your \(value)", preferredStyle: .alert)
         
-        if images.count > 0 {
+        alertView.addTextField { (textField) in
+            self.alertTextField = textField
+            self.alertTextField.placeholder = "New \(value)"
             
-            if uploadingAvatar {
-                images.first!.resolve { (icon) in
-                    if icon != nil {
-                        self.editingMode = true
-                        self.showSaveButton()
-                        
-                        self.avatarImageView.image = icon
-                        self.avatarImage = icon
-                        
-                    } else {
-                        ProgressHUD.showError("Couldn't select image!")
-                    }
-                }
-            } else {
+            
+            
+        }
+        
+        alertView.addAction(UIAlertAction(title: "update", style: .destructive, handler: { (action) in
+            
+            self.updateUserWith(value: value)
+            
+        }))
+        
+        alertView.addAction(UIAlertAction(title: "cancel", style: .cancel, handler: nil))
+        
+        self.present(alertView, animated: true, completion: nil)
+    }
+    
+    
+    
+    //MARK: - Change user info
+    
+    private func updateUserWith(value: String) {
+        
+        if alertTextField.text != "" {
+            
+            value == "Email" ? changeEmail() : changeUserName()
+        } else {
+            ProgressHUD.showError("\(value) is empty")
+        }
+    }
+
+    
+    private func changeEmail() {
+        
+        FUser.currentUser()?.updateUserEmail(newEmail: alertTextField.text!, completion: { (error) in
+            
+            if error == nil {
                 
-                Image.resolve(images: images) { (resolvedImages) in
+                if let currentUser = FUser.currentUser() {
+                    currentUser.email = self.alertTextField.text!
                     
-                    self.uploadImages(images: resolvedImages)
+                    self.saveUserData(user: currentUser)
+                }
+
+                ProgressHUD.showSuccess("Success!")
+            } else {
+                ProgressHUD.showError(error!.localizedDescription)
+            }
+        })
+
+    }
+    
+    private func changeUserName() {
+
+        if let currentUser = FUser.currentUser() {
+            currentUser.username = alertTextField.text!
+            
+            saveUserData(user: currentUser)
+            loadUserData()
+        }
+    }
+
+    //MARK: - LogOut
+    
+    private func logOutUser() {
+        
+        FUser.logOutCurrentUser { (error) in
+            
+            if error == nil {
+                
+                // i need to check the below is correct!
+                let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
+                
+                DispatchQueue.main.async {
+                    
+                    loginView.modalPresentationStyle = .fullScreen
+                    self.present(loginView, animated: true, completion: nil)
                 }
                 
+            } else {
+                ProgressHUD.showError(error!.localizedDescription)
             }
         }
         
-        controller.dismiss(animated: true, completion: nil)
-        
     }
-               
-    
-    func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
-        
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
-        
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    func galleryControllerDidCancel(_ controller: GalleryController) {
-        
-        controller.dismiss(animated: true, completion: nil)
-    }
-    
-    
-    
-    
+
+
 }
+
+
+    
+    extension ProfileTableViewController: GalleryControllerDelegate {
+        
+        func galleryController(_ controller: GalleryController, didSelectImages images: [Image]) {
+            
+            
+            if images.count > 0 {
+                
+                if uploadingAvatar {
+                    images.first!.resolve { (icon) in
+                        if icon != nil {
+                            self.editingMode = true
+                            self.showSaveButton()
+                            
+                            self.avatarImageView.image = icon?.circleMasked
+                            self.avatarImage = icon
+                            
+                        } else {
+                            ProgressHUD.showError("Couldn't select image!")
+                        }
+                    }
+                } else {
+                    
+                    Image.resolve(images: images) { (resolvedImages) in
+                        
+                        self.uploadImages(images: resolvedImages)
+                    }
+                    
+                }
+            }
+            
+            controller.dismiss(animated: true, completion: nil)
+            
+        }
+        
+        
+        func galleryController(_ controller: GalleryController, didSelectVideo video: Video) {
+            
+            controller.dismiss(animated: true, completion: nil)
+        }
+        
+        func galleryController(_ controller: GalleryController, requestLightbox images: [Image]) {
+            
+            controller.dismiss(animated: true, completion: nil)
+        }
+        
+        func galleryControllerDidCancel(_ controller: GalleryController) {
+            
+            controller.dismiss(animated: true, completion: nil)
+        }
+        
+        
+        
+        
+    }

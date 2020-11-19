@@ -242,9 +242,26 @@ class FUser: Equatable {
         }
     }
     
+    //MARK: - EDIT USER PROFILE
+    
+    
+    func updateUserEmail(newEmail: String, completion: @escaping (_ error: Error?) -> Void) {
+        
+        
+        Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { (error) in
+            
+            FUser.resendVerificationEmail(email: newEmail) { (error) in
+
+            }
+            completion(error)
+        })
+        
+        
+    }
+    
     //MARK:- RESEND LINKS
     
-    class func resetPasswordFor(email: String, completion: @escaping (_ error: Error?) -> Void) {
+    class func resendVerificationEmail(email: String, completion: @escaping (_ error: Error?) -> Void) {
         
         Auth.auth().currentUser?.reload(completion: { (error) in
             
@@ -257,6 +274,32 @@ class FUser: Equatable {
         })
         
     }
+    
+    class func resetPassword(email: String, completion: @escaping (_ error: Error?) -> Void) {
+        
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completion(error)
+        }
+    }
+    
+    
+    //MARK: - LOGOUT USER
+    
+    class func logOutCurrentUser(completion: @escaping(_ error: Error?) ->Void) {
+        
+        do {
+            try Auth.auth().signOut()
+            
+            userDefaults.removeObject(forKey: kCURRENTUSER)
+            userDefaults.synchronize()
+            completion(nil)
+
+        } catch let error as NSError {
+            completion(error)
+        }
+    }
+    
+    
     
     //MARK: - SAVE USER FUNCS
     

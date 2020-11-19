@@ -34,22 +34,24 @@ class WelcomeViewController: UIViewController {
     //MARK:- IBACTIONS
     
     @IBAction func forgotPasswordButtonPressed(_ sender: Any) {
+        
         if emailTextField.text != "" {
-           
-            FUser.resetPasswordFor(email: emailTextField.text!) { (error) in
+
+            FUser.resetPassword(email: emailTextField.text!) { (error) in
                 
                 if error != nil {
                     ProgressHUD.showError(error!.localizedDescription)
                 } else {
                     ProgressHUD.showSuccess("Please check your email!")
                 }
-                
             }
             
         } else {
-            ProgressHUD.showError("Please type in your email.")
+            ProgressHUD.showError("Please insert your email address.")
         }
     }
+    
+    
     
     @IBAction func loginButtonPressed(_ sender: Any) {
         if emailTextField.text != "" && passwordTextField.text != "" {
@@ -76,6 +78,9 @@ class WelcomeViewController: UIViewController {
             ProgressHUD.showError("All fields are required.")
         }
     }
+    
+    
+    
     
     //MARK:- SETUP
     private func setupBackgroundTouch(){

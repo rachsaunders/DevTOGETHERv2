@@ -109,6 +109,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1874E5D52565139100144AB1 /* FirebaseHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				18363E912564285000CB29CE /* FileStorage.swift */,
+			);
+			path = FirebaseHelpers;
+			sourceTree = "<group>";
+		};
 		1896A99925559B5C00C9D217 = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +145,7 @@
 				1896A9A525559B5C00C9D217 /* AppDelegate.swift */,
 				1896A9A725559B5C00C9D217 /* SceneDelegate.swift */,
 				18D765F2255DC43C0038E1B3 /* ProfileTableViewController.swift */,
-				18363E912564285000CB29CE /* FileStorage.swift */,
+				1874E5D52565139100144AB1 /* FirebaseHelpers */,
 				189DAAFA255C7515008C6E31 /* Welcome */,
 				189DAAF8255C74FE008C6E31 /* Model */,
 				189DAAF9255C7507008C6E31 /* Helpers */,
