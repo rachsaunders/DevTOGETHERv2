@@ -8,6 +8,7 @@
 import UIKit
 import Shuffle_iOS
 import Firebase
+import ProgressHUD
 
 class CardViewController: UIViewController {
     
@@ -16,24 +17,26 @@ class CardViewController: UIViewController {
     
     private let cardStack = SwipeCardStack()
     private var initialCardModels: [UserCardModel] = []
+    private var secondCardModel: [UserCardModel] = []
+    private var userObjects: [FUser] = []
     
+    var lastDocumentSnapshot: DocumentSnapshot?
+    var isInitialLoad = true
+    var showReserve = false
+    
+    var numberOfCardsAdded = 0
+    var initialLoadNumber = 3
     
     //MARK: - VIEW LIFE CYCLE
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+        // only comment out the below to make dummy users!!
+ //       createUsers()
         
-        createUsers()
-//
-//        let user = FUser.currentUser()!
-//
-//        let cardModel = UserCardModel(id: user.objectId,
-//                                      name: user.username,
-//                                      occupation: user.profession,
-//                                      image: user.avatar)
-//
-//        initialCardModels.append(cardModel)
-//        layoutCardStackView()
+        downloadInitialUsers()
+
         
     }
     
@@ -54,6 +57,57 @@ class CardViewController: UIViewController {
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
                          right: view.safeAreaLayoutGuide.rightAnchor)
     }
+    
+    //MARK:- DOWNLOAD USERS
+    
+    private func downloadInitialUsers() {
+        
+        ProgressHUD.show()
+        
+        FirebaseListener.shared.downloadUsersFromFirebase(isInitialLoad: isInitialLoad, limit: initialLoadNumber, lastDocumentSnapshot: lastDocumentSnapshot) { (allUsers, snapshot) in
+            
+            if allUsers.count == 0 {
+                ProgressHUD.dismiss()
+            }
+            
+            self.lastDocumentSnapshot = snapshot
+            self.isInitialLoad = false
+            self.initialCardModels = []
+            
+            self.userObjects = allUsers
+            
+            for user in allUsers {
+                user.getUserAvatarFromFirestore { (didSet) in
+                    
+                    let cardModel = UserCardModel(id: user.objectId, name: user.username, occupation: user.profession, image: user.avatar)
+                    
+                    self.initialCardModels.append(cardModel)
+                    self.numberOfCardsAdded += 1
+                    
+                    if self.numberOfCardsAdded == allUsers.count {
+                        print("reload")
+                        
+                        DispatchQueue.main.async {
+                            
+                            ProgressHUD.dismiss()
+                            self.layoutCardStackView()
+                        }
+                       
+                    }
+                    
+                    
+                }
+            }
+            
+            print("initial \(allUsers.count) recieved yay")
+            // get second batch
+            
+        }
+        
+        
+    }
+    
+    
 
 
 }

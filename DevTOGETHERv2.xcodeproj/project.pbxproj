@@ -146,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				18363E912564285000CB29CE /* FileStorage.swift */,
+				189DAAFE255C756C008C6E31 /* FCollectionReference.swift */,
+				189DAB03255C76FD008C6E31 /* FirebaseListener.swift */,
 			);
 			path = FirebaseHelpers;
 			sourceTree = "<group>";
@@ -222,8 +224,6 @@
 			isa = PBXGroup;
 			children = (
 				187AE41925570CCA00A90E4E /* Constants.swift */,
-				189DAAFE255C756C008C6E31 /* FCollectionReference.swift */,
-				189DAB03255C76FD008C6E31 /* FirebaseListener.swift */,
 				18F36311255D3B4A006F1474 /* Extensions.swift */,
 			);
 			path = Helpers;
