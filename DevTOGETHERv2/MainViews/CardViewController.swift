@@ -79,7 +79,10 @@ class CardViewController: UIViewController {
             for user in allUsers {
                 user.getUserAvatarFromFirestore { (didSet) in
                     
-                    let cardModel = UserCardModel(id: user.objectId, name: user.username, occupation: user.profession, image: user.avatar)
+                    let cardModel = UserCardModel(id: user.objectId,
+                                                  name: user.username,
+                                                  occupation: user.profession,
+                                                  image: user.avatar)
                     
                     self.initialCardModels.append(cardModel)
                     self.numberOfCardsAdded += 1
@@ -92,22 +95,55 @@ class CardViewController: UIViewController {
                             ProgressHUD.dismiss()
                             self.layoutCardStackView()
                         }
-                       
                     }
-                    
-                    
                 }
             }
             
             print("initial \(allUsers.count) recieved yay")
-            // get second batch
+            self.downloadMoreUsersInBackground()
             
         }
         
         
     }
     
+    private func downloadMoreUsersInBackground() {
+        
+        FirebaseListener.shared.downloadUsersFromFirebase(isInitialLoad: isInitialLoad, limit: 1000, lastDocumentSnapshot: lastDocumentSnapshot) { (allUsers, snapshot) in
+            
+            self.lastDocumentSnapshot = snapshot
+            self.secondCardModel = []
+            
+            self.userObjects += allUsers
+            
+            for user in allUsers {
+                user.getUserAvatarFromFirestore { (didSet) in
+                    
+                    let cardModel = UserCardModel(id: user.objectId,
+                                                  name: user.username,
+                                                  occupation: user.profession,
+                                                  image: user.avatar)
+                    
+                    self.secondCardModel.append(cardModel)
+                }
+            }
+            
+        }
+        
+    }
     
+    
+    
+    
+//MARK:- NAVIGATION
+//
+//    private func showUserProfileFor(userId: String) {
+//
+//        let profileView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileTableView") as! UserProfileTableViewController
+//
+//        self.present(profileView, animated: true, completion: nil)
+//
+//    }
 
 
 }
@@ -127,20 +163,29 @@ extension CardViewController: SwipeCardStackDelegate, SwipeCardStackDataSource {
             
         }
         
-        card.configure(withModel: initialCardModels[index])
+        card.configure(withModel: showReserve ? secondCardModel[index] : initialCardModels[index])
         
         return card
     }
     
     func numberOfCards(in cardStack: SwipeCardStack) -> Int {
-        return initialCardModels.count
+        return showReserve ? secondCardModel.count : initialCardModels.count
     }
     
     //MARK: - Delegates
     
     func didSwipeAllCards(_ cardStack: SwipeCardStack) {
         
-        print("test yo")
+        initialCardModels = []
+        
+        if showReserve {
+            secondCardModel = []
+        }
+        
+        showReserve = true
+        layoutCardStackView()
+        
+        print("finished with cards")
 
     }
     
@@ -151,8 +196,11 @@ extension CardViewController: SwipeCardStackDelegate, SwipeCardStackDataSource {
     
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
-     
-        print("test yo")
+
+        
+   //     showUserProfileFor(userId: showReserve ? secondCardModel[index].id : initialCardModels[index].id)
+        
+        
     }
     
     
