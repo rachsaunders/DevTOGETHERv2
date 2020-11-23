@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1831C29125566867002AEAEA /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831C29025566867002AEAEA /* FUser.swift */; };
+		183580C6256BD41F00B664CC /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183580C5256BD41F00B664CC /* UserProfileTableViewController.swift */; };
 		18363E922564285000CB29CE /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18363E912564285000CB29CE /* FileStorage.swift */; };
 		1865A48F2566936200A52236 /* CardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A48E2566936200A52236 /* CardViewController.swift */; };
 		1865A4952566954200A52236 /* UserCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A4942566954200A52236 /* UserCard.swift */; };
@@ -56,6 +57,7 @@
 		0B503E4BC29820F039492A27 /* Pods-DevTOGETHERv2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTOGETHERv2.release.xcconfig"; path = "Target Support Files/Pods-DevTOGETHERv2/Pods-DevTOGETHERv2.release.xcconfig"; sourceTree = "<group>"; };
 		0DC5FDD05DE3C58B541E9DB3 /* Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831C29025566867002AEAEA /* FUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
+		183580C5256BD41F00B664CC /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		18363E912564285000CB29CE /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
 		1865A48E2566936200A52236 /* CardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewController.swift; sourceTree = "<group>"; };
 		1865A4942566954200A52236 /* UserCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCard.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			children = (
 				18D765F2255DC43C0038E1B3 /* ProfileTableViewController.swift */,
 				1865A48E2566936200A52236 /* CardViewController.swift */,
+				183580C5256BD41F00B664CC /* UserProfileTableViewController.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				1896A9A825559B5C00C9D217 /* SceneDelegate.swift in Sources */,
 				18D765F3255DC43C0038E1B3 /* ProfileTableViewController.swift in Sources */,
 				1865A48F2566936200A52236 /* CardViewController.swift in Sources */,
+				183580C6256BD41F00B664CC /* UserProfileTableViewController.swift in Sources */,
 				1896AA802555AEE900C9D217 /* RegisterViewController.swift in Sources */,
 				1865A4A62566959500A52236 /* UserCardOverlay.swift in Sources */,
 				1865A4952566954200A52236 /* UserCard.swift in Sources */,

@@ -331,10 +331,10 @@
             </objects>
             <point key="canvasLocation" x="3826.0869565217395" y="-145.3125"/>
         </scene>
-        <!--Table View Controller-->
+        <!--User Profile Table View Controller-->
         <scene sceneID="1a2-sx-7cT">
             <objects>
-                <tableViewController id="88y-Ao-Nlt" sceneMemberID="viewController">
+                <tableViewController id="88y-Ao-Nlt" customClass="UserProfileTableViewController" customModule="DevTOGETHERv2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NbF-JK-0Pu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -808,6 +808,26 @@
                             <outlet property="delegate" destination="88y-Ao-Nlt" id="WDM-6I-dov"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="aboutTextView" destination="qwF-0P-RVX" id="2CA-qt-9bB"/>
+                        <outlet property="activityIndicator" destination="Jie-zJ-Ibx" id="hQP-xB-eZp"/>
+                        <outlet property="collectionView" destination="86P-fo-M1W" id="zz4-Gz-otc"/>
+                        <outlet property="dislikeButtonOutlet" destination="CZf-Bi-9oi" id="s3g-Oz-7Q3"/>
+                        <outlet property="genderLabel" destination="5xW-oy-ot6" id="Y9i-Jq-57T"/>
+                        <outlet property="jobLabel" destination="GQR-xe-YyN" id="KfA-Ae-nOW"/>
+                        <outlet property="likeButtonOutlet" destination="OhO-jP-4Mi" id="dXz-Rb-FOr"/>
+                        <outlet property="lookingForLabel" destination="2tS-cl-wU5" id="T0i-Oa-eII"/>
+                        <outlet property="pageControl" destination="ACW-YP-t6X" id="uW4-WF-0R5"/>
+                        <outlet property="professionLabel" destination="MLX-Qx-7Ej" id="Lut-aQ-0td"/>
+                        <outlet property="sectionFiveView" destination="8H5-rl-ZQh" id="8hH-M3-nfL"/>
+                        <outlet property="sectionFourView" destination="ZgG-Jh-njF" id="Wk7-Xf-TwN"/>
+                        <outlet property="sectionOneView" destination="qvQ-1U-8ce" id="at9-Hc-VHw"/>
+                        <outlet property="sectionSixView" destination="VDX-tn-1LW" id="Je5-af-OzF"/>
+                        <outlet property="sectionThreeView" destination="rsi-Xa-743" id="wB8-3L-n7A"/>
+                        <outlet property="sectionTwoView" destination="Cd2-xa-Rfg" id="nwc-vv-jy4"/>
+                        <outlet property="skillsLookingForTextView" destination="jC8-21-O4s" id="id1-as-Bft"/>
+                        <outlet property="skillsTextView" destination="Ywc-aE-wAg" id="YRD-NZ-u9c"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zT0-wi-duY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
