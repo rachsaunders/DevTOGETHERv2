@@ -49,6 +49,8 @@ class UserProfileTableViewController: UITableViewController {
     //MARK:- VIEW LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupBackgrounds()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -68,5 +70,23 @@ class UserProfileTableViewController: UITableViewController {
 //        // #warning Incomplete implementation, return the number of rows
 //        return 0
 //    }
+    
+    
+    
+    //MARK:- SETUP USER INTERFACE
+    
+    private func setupBackgrounds() {
+        
+        sectionOneView.clipsToBounds = true
+        sectionOneView.layer.contents = 30
+        sectionOneView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        
+        sectionTwoView.layer.cornerRadius = 10
+        sectionThreeView.layer.cornerRadius = 10
+        sectionFourView.layer.cornerRadius = 10
+        sectionFiveView.layer.cornerRadius = 10
+        sectionSixView.layer.cornerRadius = 10
+        
+    }
 
 }

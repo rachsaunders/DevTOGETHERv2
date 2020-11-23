@@ -334,7 +334,7 @@
         <!--User Profile Table View Controller-->
         <scene sceneID="1a2-sx-7cT">
             <objects>
-                <tableViewController id="88y-Ao-Nlt" customClass="UserProfileTableViewController" customModule="DevTOGETHERv2" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileTableView" id="88y-Ao-Nlt" customClass="UserProfileTableViewController" customModule="DevTOGETHERv2" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NbF-JK-0Pu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
