@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SKPhotoBrowser
 
 class UserProfileTableViewController: UITableViewController {
 
@@ -214,6 +215,25 @@ class UserProfileTableViewController: UITableViewController {
     private func setSelectedPageTo(page: Int) {
         self.pageControl.currentPage = page
     }
+    
+    //MARK:- SKPHOTO BROWSER
+    
+    private func showImages(_ images: [UIImage], startIndex: Int) {
+        
+        var SKImages : [SKPhoto] = []
+        
+        for image in images {
+            SKImages.append(SKPhoto.photoWithImage(image))
+            
+        }
+        
+        let browser = SKPhotoBrowser(photos: SKImages)
+        
+        browser.initializePageIndex(startIndex)
+        self.present(browser, animated: true, completion: nil)
+        
+    }
+    
 
 }
 
@@ -244,8 +264,7 @@ extension UserProfileTableViewController : UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        print("image tap")
-        
+        showImages(allImages, startIndex: indexPath.row)
     }
     
 }
