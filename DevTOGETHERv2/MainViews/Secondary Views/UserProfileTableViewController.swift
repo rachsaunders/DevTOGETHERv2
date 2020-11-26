@@ -66,6 +66,7 @@ class UserProfileTableViewController: UITableViewController {
         pageControl.hidesForSinglePage = true
         
         if userObject != nil {
+            updateLikeButtonStatus()
             showUserDetails()
             loadImages()
         }
@@ -83,7 +84,7 @@ class UserProfileTableViewController: UITableViewController {
     //MARK:- IBACTIONS
     
     @IBAction func dislikeButtonPressed(_ sender: Any) {
-        
+        dismissView()
         
         
         
@@ -91,8 +92,8 @@ class UserProfileTableViewController: UITableViewController {
     
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-        
-        
+        saveLikeToUser(userId: userObject!.objectId)
+        dismissView()
         
     }
     
@@ -116,13 +117,6 @@ class UserProfileTableViewController: UITableViewController {
         return view
         
     }
-    
-    
-  
-    
-    
-
-
     
     
     //MARK:- SETUP USER INTERFACE
@@ -204,7 +198,6 @@ class UserProfileTableViewController: UITableViewController {
         
     }
     
-    
     //MARK:- PAGE CONTROL
     
     private func setPageControlPages() {
@@ -234,7 +227,43 @@ class UserProfileTableViewController: UITableViewController {
         
     }
     
+    //MARK:- UPDATE UI
+    
+    private func updateLikeButtonStatus() {
+        likeButtonOutlet.isEnabled = !FUser.currentUser()!.likedIdArray!.contains(userObject!.objectId)
+    }
+    
+    //MARK:- HELPERS
+    
+    private func dismissView() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK:- SAVE LIKE
+    
 
+    private func saveLikeToUser(userId: String) {
+        
+        let like = LikeObject(id: UUID().uuidString, userId: FUser.currentId(), likedUserId: userId, date: Date())
+        
+        like.saveToFireStore()
+        
+        if let currentUser = FUser.currentUser() {
+            
+            if !currentUser.likedIdArray!.contains(userId) {
+                currentUser.likedIdArray!.append(userId)
+                
+                currentUser.updateCurrentUserInFireStore(withValues: [kLIKEDIDARRAY: currentUser.likedIdArray]) { (error) in
+                    print("updated current user with error", error?.localizedDescription)
+                    
+                }
+            }
+        }
+
+
+    }
+    
+    
 }
 
 extension UserProfileTableViewController : UICollectionViewDataSource {
@@ -255,8 +284,6 @@ extension UserProfileTableViewController : UICollectionViewDataSource {
         return cell
         
     }
-    
-    
     
 }
 
