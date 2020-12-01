@@ -8,6 +8,13 @@
 import UIKit
 import SKPhotoBrowser
 
+protocol UserProfileTableViewControllerDelegate {
+    func didLikeUser()
+    func didDislikeUser()
+    
+    
+}
+
 class UserProfileTableViewController: UITableViewController {
 
     //MARK:- IBOUTLETS
@@ -51,6 +58,8 @@ class UserProfileTableViewController: UITableViewController {
     
     var userObject: FUser?
     
+    var delegate: UserProfileTableViewControllerDelegate?
+    
     var allImages: [UIImage] = []
     
     private let sectionInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 5.0)
@@ -84,6 +93,9 @@ class UserProfileTableViewController: UITableViewController {
     //MARK:- IBACTIONS
     
     @IBAction func dislikeButtonPressed(_ sender: Any) {
+        
+        self.delegate?.didDislikeUser()
+        
         dismissView()
         
         
@@ -92,7 +104,10 @@ class UserProfileTableViewController: UITableViewController {
     
     
     @IBAction func likeButtonPressed(_ sender: Any) {
-        saveLikeToUser(userId: userObject!.objectId)
+      
+        self.delegate?.didLikeUser()
+        
+       saveLikeToUser(userId: userObject!.objectId)
         dismissView()
         
     }
@@ -237,31 +252,8 @@ class UserProfileTableViewController: UITableViewController {
     
     private func dismissView() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    //MARK:- SAVE LIKE
-    
+    } 
 
-    private func saveLikeToUser(userId: String) {
-        
-        let like = LikeObject(id: UUID().uuidString, userId: FUser.currentId(), likedUserId: userId, date: Date())
-        
-        like.saveToFireStore()
-        
-        if let currentUser = FUser.currentUser() {
-            
-            if !currentUser.likedIdArray!.contains(userId) {
-                currentUser.likedIdArray!.append(userId)
-                
-                currentUser.updateCurrentUserInFireStore(withValues: [kLIKEDIDARRAY: currentUser.likedIdArray]) { (error) in
-                    print("updated current user with error", error?.localizedDescription)
-                    
-                }
-            }
-        }
-
-
-    }
     
     
 }

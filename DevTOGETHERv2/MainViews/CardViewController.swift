@@ -33,7 +33,16 @@ class CardViewController: UIViewController {
         super.viewDidLoad()
     
         // only comment out the below to make dummy users!!
+        
+        
  //       createUsers()
+//
+        
+        // COMMENT OUT THE FOUR LINES BELOW TO RESET USER LIKES LOCALLY AND FIREBASE 
+//        let user = FUser.currentUser()!
+//        user.likedIdArray = []
+//        user.saveUserLocally()
+//        user.saveUserToFireStore()
         
         downloadInitialUsers()
 
@@ -142,6 +151,9 @@ class CardViewController: UIViewController {
         let profileView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileTableView") as! UserProfileTableViewController
         
         profileView.userObject = getUserWithId(userId: userId)
+        
+        profileView.delegate = self
+        
 
         self.present(profileView, animated: true, completion: nil)
 
@@ -159,6 +171,29 @@ class CardViewController: UIViewController {
         }
         
         return nil
+        
+    }
+    
+    private func checkForLikesWith(userId: String) {
+        
+        print("checking for like with user", userId)
+        
+        if didLikeUserWith(userId: userId) {
+
+            saveLikeToUser(userId: userId)
+        }
+        
+        // fetch likeks
+        
+        FirebaseListener.shared.checkIfUserLikedUs(userId: userId) { (didLike) in
+            
+            if didLike {
+                print("create a match")
+                // show match view
+                
+            }
+            
+        }
         
     }
 
@@ -208,7 +243,18 @@ extension CardViewController: SwipeCardStackDelegate, SwipeCardStackDataSource {
     
     func cardStack(_ cardStack: SwipeCardStack, didSwipeCardAt index: Int, with direction: SwipeDirection) {
         
-        print("test yo")
+        
+        if direction == .right {
+            
+            let user = getUserWithId(userId: showReserve ? secondCardModel[index].id : initialCardModels[index].id)
+            
+            checkForLikesWith(userId: user!.objectId)
+            
+            
+        }
+        
+        
+        
     }
     
     
@@ -222,6 +268,25 @@ extension CardViewController: SwipeCardStackDelegate, SwipeCardStackDataSource {
     }
     
     
+    
+    
+    
+}
+
+
+extension CardViewController: UserProfileTableViewControllerDelegate {
+    func didLikeUser() {
+        
+        cardStack.swipe(.right, animated: true)
+        
+        
+    }
+    
+    func didDislikeUser() {
+        
+        cardStack.swipe(.left, animated: true)
+        
+    }
     
     
     

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180BDBED25765682008F7A55 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BDBEC25765682008F7A55 /* NotificationsViewController.swift */; };
+		180BDBF52576616C008F7A55 /* LikeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BDBF42576616C008F7A55 /* LikeTableViewCell.swift */; };
 		1831C29125566867002AEAEA /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1831C29025566867002AEAEA /* FUser.swift */; };
 		183580C6256BD41F00B664CC /* UserProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183580C5256BD41F00B664CC /* UserProfileTableViewController.swift */; };
 		18363E922564285000CB29CE /* FileStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18363E912564285000CB29CE /* FileStorage.swift */; };
@@ -19,6 +21,7 @@
 		1865A4B0256695D200A52236 /* UserCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865A4AF256695D200A52236 /* UserCardFooterView.swift */; };
 		1872EF91256FE2E20080B3A3 /* LikeObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1872EF90256FE2E20080B3A3 /* LikeObject.swift */; };
 		187AE41A25570CCA00A90E4E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187AE41925570CCA00A90E4E /* Constants.swift */; };
+		1881F11E2571299B001EF7CA /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1881F11D2571299B001EF7CA /* GlobalFunctions.swift */; };
 		1896A9A625559B5C00C9D217 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A9A525559B5C00C9D217 /* AppDelegate.swift */; };
 		1896A9A825559B5C00C9D217 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896A9A725559B5C00C9D217 /* SceneDelegate.swift */; };
 		1896A9AD25559B5C00C9D217 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1896A9AB25559B5C00C9D217 /* Main.storyboard */; };
@@ -58,6 +61,8 @@
 /* Begin PBXFileReference section */
 		0B503E4BC29820F039492A27 /* Pods-DevTOGETHERv2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevTOGETHERv2.release.xcconfig"; path = "Target Support Files/Pods-DevTOGETHERv2/Pods-DevTOGETHERv2.release.xcconfig"; sourceTree = "<group>"; };
 		0DC5FDD05DE3C58B541E9DB3 /* Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DevTOGETHERv2_DevTOGETHERv2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		180BDBEC25765682008F7A55 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
+		180BDBF42576616C008F7A55 /* LikeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeTableViewCell.swift; sourceTree = "<group>"; };
 		1831C29025566867002AEAEA /* FUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
 		183580C5256BD41F00B664CC /* UserProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileTableViewController.swift; sourceTree = "<group>"; };
 		18363E912564285000CB29CE /* FileStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileStorage.swift; sourceTree = "<group>"; };
@@ -70,6 +75,7 @@
 		1865A4AF256695D200A52236 /* UserCardFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCardFooterView.swift; sourceTree = "<group>"; };
 		1872EF90256FE2E20080B3A3 /* LikeObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeObject.swift; sourceTree = "<group>"; };
 		187AE41925570CCA00A90E4E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1881F11D2571299B001EF7CA /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		1896A9A225559B5C00C9D217 /* DevTOGETHERv2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DevTOGETHERv2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1896A9A525559B5C00C9D217 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1896A9A725559B5C00C9D217 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				18388028256D20D100CB3A96 /* ImageCollectionViewCell.swift */,
+				180BDBF42576616C008F7A55 /* LikeTableViewCell.swift */,
 			);
 			path = "Custom Cells";
 			sourceTree = "<group>";
@@ -148,6 +155,7 @@
 			children = (
 				18D765F2255DC43C0038E1B3 /* ProfileTableViewController.swift */,
 				1865A48E2566936200A52236 /* CardViewController.swift */,
+				180BDBEC25765682008F7A55 /* NotificationsViewController.swift */,
 				18388027256D20A500CB3A96 /* Secondary Views */,
 			);
 			path = MainViews;
@@ -250,6 +258,7 @@
 			children = (
 				187AE41925570CCA00A90E4E /* Constants.swift */,
 				18F36311255D3B4A006F1474 /* Extensions.swift */,
+				1881F11D2571299B001EF7CA /* GlobalFunctions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -527,6 +536,7 @@
 			files = (
 				189DAB04255C76FD008C6E31 /* FirebaseListener.swift in Sources */,
 				1865A4B0256695D200A52236 /* UserCardFooterView.swift in Sources */,
+				1881F11E2571299B001EF7CA /* GlobalFunctions.swift in Sources */,
 				18363E922564285000CB29CE /* FileStorage.swift in Sources */,
 				18F36312255D3B4A006F1474 /* Extensions.swift in Sources */,
 				1865A4AB256695B700A52236 /* UserCardContentView.swift in Sources */,
@@ -536,6 +546,7 @@
 				1896A9A625559B5C00C9D217 /* AppDelegate.swift in Sources */,
 				1896A9A825559B5C00C9D217 /* SceneDelegate.swift in Sources */,
 				18D765F3255DC43C0038E1B3 /* ProfileTableViewController.swift in Sources */,
+				180BDBF52576616C008F7A55 /* LikeTableViewCell.swift in Sources */,
 				1865A48F2566936200A52236 /* CardViewController.swift in Sources */,
 				183580C6256BD41F00B664CC /* UserProfileTableViewController.swift in Sources */,
 				1896AA802555AEE900C9D217 /* RegisterViewController.swift in Sources */,
@@ -543,6 +554,7 @@
 				1865A4952566954200A52236 /* UserCard.swift in Sources */,
 				189DAAFF255C756C008C6E31 /* FCollectionReference.swift in Sources */,
 				187AE41A25570CCA00A90E4E /* Constants.swift in Sources */,
+				180BDBED25765682008F7A55 /* NotificationsViewController.swift in Sources */,
 				18388029256D20D100CB3A96 /* ImageCollectionViewCell.swift in Sources */,
 				1872EF91256FE2E20080B3A3 /* LikeObject.swift in Sources */,
 			);
